@@ -1,23 +1,27 @@
 console.log("Day 1: OK");
 console.log(new Date());
 
-let name = "Kolyan";
-let age = 19;
-let isStudent = true;
-let city = "Moscow";
+const name = "Kolyan";
+const age = 19;
+const isStudent = true;
+const city = "Moscow";
 
 console.log(typeof name, typeof age, typeof isStudent, typeof city);
 
 console.log(age >= 18 ? "yeah" : "nope");
 
-let numbers = [3, 1, 7, 2];
+const numbers = [3, 1, 7, 2];
 let sum = 0;
+let max = 0;
 
 for (let number of numbers) {
   sum += number;
+  if (number > max) {
+    max = number;
+  }
 }
 
-console.log(sum, Math.max(...numbers));
+console.log(sum, max);
 
 let user = {
   name,
@@ -30,7 +34,11 @@ let arr = [];
 
 for (let value of Object.values(user)) {
   console.log(value);
-  arr.push(String(value));
+  if (typeof value != "object") {
+    arr.push(String(value));
+  } else {
+    arr.push("skills: " + value.join(", "));
+  }
 }
 
-console.log(arr.join(","));
+console.log(arr.join(", "));
