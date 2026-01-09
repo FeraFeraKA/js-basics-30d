@@ -1,21 +1,32 @@
 let state = {
   count: 0,
   items: [],
+  query: "",
 };
 
-const span = document.querySelector(".count");
-const ul = document.querySelector(".list-ul");
+const countSpan = document.querySelector(".count");
+const searchP = document.querySelector(".search");
+const listUl = document.querySelector(".list-ul");
 const btnPlus = document.querySelector(".btn-plus");
 const btnMinus = document.querySelector(".btn-minus");
 const btnReset = document.querySelector(".btn-reset");
 const btnAdd = document.querySelector(".btn-add");
-const input = document.querySelector(".list-input");
+const btnSearch = document.querySelector(".btn-search");
+const listInput = document.querySelector(".list-input");
+const searchInput = document.querySelector(".search-input");
+const searchUl = document.querySelector(".search-ul");
 
 const receivedString = localStorage.getItem("state");
 
 function render() {
-  span.textContent = state.count;
-  ul.innerHTML = "";
+  countSpan.textContent = state.count;
+  const q = state.query.trim();
+  const filteredItems =
+    q === ""
+      ? state.items
+      : state.items.filter((n) => n.toLowerCase().includes(q.toLowerCase()));
+  listUl.innerHTML = "";
+  searchUl.innerHTML = "";
   let index = 0;
   for (const item of state.items) {
     const li = document.createElement("li");
@@ -25,16 +36,21 @@ function render() {
     li.dataset.index = index;
     li.textContent = item;
     li.append(button);
-    ul.append(li);
+    listUl.append(li);
     index++;
+  }
+  for (const item of filteredItems) {
+    const li = document.createElement("li");
+    li.textContent = item;
+    searchUl.append(li);
   }
 }
 
 function addItem() {
-  const value = input.value.trim();
+  const value = listInput.value.trim();
   if (value === "") return;
   state.items.push(value);
-  input.value = "";
+  listInput.value = "";
   saveState();
   render();
 }
@@ -72,11 +88,17 @@ btnAdd.addEventListener("click", () => {
   addItem();
 });
 
-input.addEventListener("keydown", (e) => {
+listInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") addItem();
 });
 
-ul.addEventListener("click", (event) => {
+searchInput.addEventListener("input", () => {
+  state.query = searchInput.value;
+  saveState();
+  render();
+});
+
+listUl.addEventListener("click", (event) => {
   if (!event.target.classList.contains("btn-delete")) return;
   const index = Number(event.target.closest("li").dataset.index);
   state.items.splice(index, 1);
