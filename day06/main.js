@@ -17,19 +17,6 @@ const total = document.querySelector(".total");
 const visible = document.querySelector(".visible");
 const error = document.querySelector(".error");
 
-function getFilteredItems(items, query) {
-  const q = query.trim().toLowerCase();
-  return q === ""
-    ? items
-    : items.filter((n) => n.text.toLowerCase().includes(q));
-}
-
-function getStats(items, filteredItems) {
-  const total = items.length;
-  const visible = filteredItems.length;
-  return { total, visible };
-}
-
 function render() {
   countSpan.textContent = state.count;
 
@@ -53,6 +40,19 @@ function render() {
     li.append(button);
     listUl.append(li);
   }
+}
+
+function getFilteredItems(items, query) {
+  const q = query.trim().toLowerCase();
+  return q === ""
+    ? items
+    : items.filter((n) => n.text.toLowerCase().includes(q));
+}
+
+function getStats(items, filteredItems) {
+  const total = items.length;
+  const visible = filteredItems.length;
+  return { total, visible };
 }
 
 function checkValidation(value) {
