@@ -30,7 +30,7 @@ export async function fetchItems() {
         rating: n.rating,
       })),
     );
-    state.status = "success";
+    state.status = state.products.length === 0 ? "empty" : "normal";
   } catch (err) {
     state.status = "error";
     state.error = err.name === "AbortError" ? "Вышло время доступа к API" : err.message;
