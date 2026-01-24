@@ -1,0 +1,38 @@
+export function getStatus(status) {
+  if (status === "idle") return "";
+  if (status === "loading") return "Загрузка...";
+  if (status === "error") return "Произошла ошибка: ";
+  if (status === "empty") return "Данных нет";
+  if (status === "normal") return "Загрузка завершена";
+}
+
+export function filterProducts(products, query, category, count) {
+  const q = query.trim().toLowerCase();
+  let result = q === "" ? products : products.filter((n) => n.title.toLowerCase().includes(q));
+  result = category === "all" ? result : result.filter((n) => n.category === category);
+  return result;
+}
+
+export function getVisibleProducts(products, count) {
+  return products.slice(0, count);
+}
+
+export function getCategories(products) {
+  let categories = new Set();
+  products.forEach((product) => {
+    categories.add(product.category);
+  });
+  return categories;
+}
+
+export function capitalizeWord(word) {
+  return word
+    .split(" ")
+    .map((word) => word.slice(0, 1).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
+export function canLoadMore(filteredItems, visibleItems) {
+  if (visibleItems.length < filteredItems.length) return true;
+  return false;
+}
