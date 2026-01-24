@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catalog</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./main.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <h1>Каталог</h1>
+        <span class="request__status"></span>
+        <span class="request__error"></span>
+      </div>
+    </header>
+    <section class="catalog">
+      <div class="container">
+        <div class="catalog__panel">
+          <input type="text" class="catalog__query" placeholder="Search..." />
+          <select name="category" id="category" class="catalog__select"></select>
+          <button class="catalog__reset">Reset</button>
+        </div>
+        <div class="catalog__cards">
+          <div class="card">
+            <p class="card__title">Title</p>
+            <p class="card__price">Price</p>
+            <p class="card__description">Description</p>
+            <p class="card__category">Category</p>
+            <p class="card__rating">Rating</p>
+          </div>
+        </div>
+        <button class="catalog__more">Показать ещё</button>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="container">
+        <h2>Ваш любимый магазин</h2>
+      </div>
+    </footer>
+    <div class="modal-overlay" hidden>
+      <div class="modal">
+        <button class="modal__close">X</button>
+        <div class="modal__content">
+          <img class="modal__image" src="" alt="" />
+          <div class="modal__info">
+            <p class="modal__title"></p>
+            <p class="modal__price"></p>
+            <p class="modal__description"></p>
+            <p class="modal__category"></p>
+            <p class="modal__rating"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
