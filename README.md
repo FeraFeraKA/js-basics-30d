@@ -9,7 +9,7 @@
 
 ## Мини-Проект-1: Каталог с использованием FakeStoreAPI
 
-Deploy: https://feraferaka.github.io/js-basics-30d/
+Deploy: https://feraferaka.github.io/js-basics-30d/catalog/
 
 ## Реализовано:
 
@@ -34,7 +34,7 @@ HTML, CSS, JS, ES Modules
 
 ## Мини-Проект-2: Notes Pro
 
-Deploy: https://feraferaka.github.io/js-basics-30d/
+Deploy: https://feraferaka.github.io/js-basics-30d/notes/
 
 ## Реализовано:
 
